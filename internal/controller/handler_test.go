@@ -174,7 +174,11 @@ func TestHandler_Get(t *testing.T) {
 		assert.Equal(t, http.StatusOK, w.Code)
 
 		var response domain.Todo
-		json.Unmarshal(w.Body.Bytes(), &response)
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		if err != nil {
+			t.Fatalf("Failed to unmarshal response: %v", err)
+		}
+
 		assert.Equal(t, expectedTodo.ID, response.ID)
 		assert.Equal(t, expectedTodo.Title, response.Title)
 
@@ -318,6 +322,9 @@ func TestHealthCheckHandler(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 
 	var response map[string]string
-	json.Unmarshal(w.Body.Bytes(), &response)
+	err := json.Unmarshal(w.Body.Bytes(), &response)
+	if err != nil {
+		t.Fatalf("Failed to unmarshal response: %v", err)
+	}
 	assert.Equal(t, "ok", response["status"])
 }

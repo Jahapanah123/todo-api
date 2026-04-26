@@ -13,17 +13,17 @@ type Repository interface {
 	Delete(id string) error
 }
 
-type service struct {
+type Service struct {
 	repo Repository
 }
 
-func NewService(repo Repository) *service {
-	return &service{
+func NewService(repo Repository) *Service {
+	return &Service{
 		repo: repo,
 	}
 }
 
-func (s *service) Create(todo domain.Todo) error {
+func (s *Service) Create(todo domain.Todo) error {
 	if todo.ID == "" || todo.Title == "" {
 		return fmt.Errorf("ID and Title are required fields")
 	}
@@ -33,7 +33,7 @@ func (s *service) Create(todo domain.Todo) error {
 	return nil
 }
 
-func (s *service) Get(id string) (*domain.Todo, error) {
+func (s *Service) Get(id string) (*domain.Todo, error) {
 
 	if id == "" {
 		return nil, fmt.Errorf("ID is required")
@@ -45,7 +45,7 @@ func (s *service) Get(id string) (*domain.Todo, error) {
 	return todo, nil
 }
 
-func (s *service) Update(id string, title string, description string) error {
+func (s *Service) Update(id string, title string, description string) error {
 	if id == "" {
 		return fmt.Errorf("ID is required")
 	}
@@ -58,7 +58,7 @@ func (s *service) Update(id string, title string, description string) error {
 	return nil
 }
 
-func (s *service) Delete(id string) error {
+func (s *Service) Delete(id string) error {
 	if id == "" {
 		return fmt.Errorf("ID is required")
 	}

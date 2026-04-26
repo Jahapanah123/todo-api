@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"strconv"
 	"testing"
 
 	"github.com/jahapanah123/todo/internal/domain"
@@ -35,7 +36,10 @@ func TestRepository_Get(t *testing.T) {
 		Title:       "Test Todo",
 		Description: "Test Description",
 	}
-	repo.Create(todo)
+	err := repo.Create(todo)
+	if err != nil {
+		t.Fatalf("Failed to create todo: %v", err)
+	}
 
 	t.Run("Get existing todo", func(t *testing.T) {
 		result, err := repo.Get("1")
@@ -61,7 +65,10 @@ func TestRepository_Update(t *testing.T) {
 		Title:       "Test Todo",
 		Description: "Test Description",
 	}
-	repo.Create(todo)
+	err := repo.Create(todo)
+	if err != nil {
+		t.Fatalf("Failed to create todo: %v", err)
+	}
 
 	t.Run("Update existing todo", func(t *testing.T) {
 		err := repo.Update("1", "Updated Title", "Updated Description")
@@ -87,7 +94,10 @@ func TestRepository_Delete(t *testing.T) {
 		Title:       "Test Todo",
 		Description: "Test Description",
 	}
-	repo.Create(todo)
+	err := repo.Create(todo)
+	if err != nil {
+		t.Fatalf("Failed to create todo: %v", err)
+	}
 
 	t.Run("Delete existing todo", func(t *testing.T) {
 		err := repo.Delete("1")
@@ -110,10 +120,13 @@ func TestRepository_ConcurrentAccess(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		go func(id int) {
 			todo := domain.Todo{
-				ID:    string(rune(id)),
+				ID:    strconv.Itoa(id),
 				Title: "Concurrent Todo",
 			}
-			repo.Create(todo)
+			err := repo.Create(todo)
+			if err != nil {
+				t.Errorf("Create failed: %v", err)
+			}
 			done <- true
 		}(i)
 	}

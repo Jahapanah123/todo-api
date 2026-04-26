@@ -33,7 +33,7 @@ func (r *Repository) Get(id string) (*domain.Todo, error) {
 	todo, exists := r.data[id]
 
 	if !exists {
-		return nil, fmt.Errorf("Todo with ID %s not found", id)
+		return nil, fmt.Errorf("todo with ID %s not found", id)
 	}
 	return &todo, nil
 }
@@ -43,7 +43,7 @@ func (r *Repository) Update(id string, title string, description string) error {
 	defer r.mu.Unlock()
 
 	if _, exists := r.data[id]; !exists {
-		return fmt.Errorf("Todo with ID %s not found", id)
+		return fmt.Errorf("todo with ID %s not found", id)
 	}
 	todo := r.data[id]
 	todo.Title = title
@@ -57,7 +57,7 @@ func (r *Repository) Delete(id string) error {
 	defer r.mu.Unlock()
 
 	if _, exists := r.data[id]; !exists {
-		return fmt.Errorf("Todo with ID %s not found", id)
+		return fmt.Errorf("todo with ID %s not found", id)
 	}
 	delete(r.data, id)
 	return nil
