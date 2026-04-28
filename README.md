@@ -33,21 +33,25 @@ Build Docker image
 Render auto-deploys latest code
 
 
-## Live URL
 
+```md
+## Live URL
 https://todo-api-nozn.onrender.com
 
 ## Health Check
-
+```bash
 curl https://todo-api-nozn.onrender.com/health
 
-## Expected response:
 
+```md
+## Expected Response
+```json
 {
   "status": "my app is live"
 }
 
-Note:
 
-This project is not focused on business logic or production features.
+```md
+## Note
+This project is not focused on business logic or production features.  
 It was built mainly to practice CI/CD, Docker, GitHub Actions, and deployment flow.
