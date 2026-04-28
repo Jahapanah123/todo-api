@@ -326,5 +326,5 @@ func TestHealthCheckHandler(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to unmarshal response: %v", err)
 	}
-	assert.Equal(t, "ok", response["status"])
+	assert.Equal(t, "my app is live", response["status"])
 }
