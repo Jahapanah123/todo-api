@@ -21,7 +21,7 @@ This project focuses on understanding:
 
 ## CI/CD Flow
 
-```text
+
 Push to main
    ↓
 Run tests
