@@ -34,24 +34,24 @@ Render auto-deploys latest code
 
 
 
-```md
+
 ## Live URL
 https://todo-api-nozn.onrender.com
 
 ## Health Check
-```bash
+
 curl https://todo-api-nozn.onrender.com/health
 
 
-```md
+
 ## Expected Response
-```json
+
+json
 {
   "status": "my app is live"
 }
 
 
-```md
 ## Note
 This project is not focused on business logic or production features.  
 It was built mainly to practice CI/CD, Docker, GitHub Actions, and deployment flow.
