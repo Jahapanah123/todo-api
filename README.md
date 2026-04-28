@@ -42,16 +42,12 @@ https://todo-api-nozn.onrender.com
 
 curl https://todo-api-nozn.onrender.com/health
 
-
-
 ## Expected Response
 
-json
 {
   "status": "my app is live"
 }
 
-
 ## Note
-This project is not focused on business logic or production features.  
+This project is not focused on business logic or production features.
 It was built mainly to practice CI/CD, Docker, GitHub Actions, and deployment flow.
